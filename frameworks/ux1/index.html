@@ -36,6 +36,11 @@
         #menu a:hover {
             color: #23527c;
         }
+        
+        /* idx namespace */
+        .idx-container {
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +49,7 @@
         <li><a href="#" data-page="page2.html">Page 2</a></li>
         <li><a href="#" data-page="page3.html">Page 3</a></li>
     </ul>
-    <div id="container"></div>
+    <div id="container" class="idx-container"></div>
 
     <script>
         const menuLinks = document.querySelectorAll('#menu a');
@@ -72,14 +77,13 @@
                     const existingScripts = document.querySelectorAll('script');
                     existingScripts.forEach(script => script.remove());
 
-                    // Add new styles to the head
+                    // Load page-specific CSS and JS
                     styles.forEach(style => {
                         const newStyle = document.createElement('style');
                         newStyle.textContent = style.textContent;
                         document.head.appendChild(newStyle);
                     });
 
-                    // Add new scripts to the body
                     scripts.forEach(script => {
                         const newScript = document.createElement('script');
                         newScript.textContent = script.textContent;
