@@ -5,17 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 2</title>
     <style>
-        h1 {
+        /* p2 namespace */
+        .p2-container {
+            background-color: #f9f9f9;
+        }
+        
+        .p2-header {
             color: #8f0000;
         }
     </style>
 </head>
 <body>
-    <h1>Page 2</h1>
-    <p>This is page 2.</p>
+        <div class="p2-container">
+        <h1 class="p2-header">Page 2</h1>
+        <p>This is page 2.</p>
+    </div>
 
     <script>
-        console.log('Script from page 2 loaded!');
+        // p2 namespace
+        const p2 = {
+            myFunction: function() {
+                console.log('myFunction from page2.html');
+            }
+        };
+
+        // Call the function
+        p2.myFunction();
     </script>
 </body>
 </html>
