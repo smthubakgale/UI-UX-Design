@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu-Based Page Loader</title>
+    <style>
+        #container {
+            width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        #menu li {
+            margin-right: 20px;
+        }
+        
+        #menu a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        
+        #menu a:hover {
+            color: #23527c;
+        }
+    </style>
+</head>
+<body>
+    <ul id="menu">
+        <li><a href="#" data-page="page1.html">Page 1</a></li>
+        <li><a href="#" data-page="page2.html">Page 2</a></li>
+        <li><a href="#" data-page="page3.html">Page 3</a></li>
+    </ul>
+    <div id="container"></div>
+
+    <script>
+        const menuLinks = document.querySelectorAll('#menu a');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+                const pageUrl = link.getAttribute('data-page');
+                loadPage(pageUrl);
+            });
+        });
+
+        function loadPage(pageUrl) {
+            fetch(pageUrl)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const styles = doc.querySelectorAll('style');
+                    const scripts = doc.querySelectorAll('script');
+
+                    // Remove existing styles and scripts
+                    const existingStyles = document.querySelectorAll('style');
+                    existingStyles.forEach(style => style.remove());
+                    const existingScripts = document.querySelectorAll('script');
+                    existingScripts.forEach(script => script.remove());
+
+                    // Add new styles to the head
+                    styles.forEach(style => {
+                        const newStyle = document.createElement('style');
+                        newStyle.textContent = style.textContent;
+                        document.head.appendChild(newStyle);
+                    });
+
+                    // Add new scripts to the body
+                    scripts.forEach(script => {
+                        const newScript = document.createElement('script');
+                        newScript.textContent = script.textContent;
+                        document.body.appendChild(newScript);
+                    });
+
+                    // Add the HTML content to the container
+                    const container = document.getElementById('container');
+                    container.innerHTML = doc.body.innerHTML;
+                });
+        }
+    </script>
+</body>
+</html>
