@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu-Based Page Loader</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         #container {
             width: 800px;
@@ -41,6 +42,45 @@
         .idx-container {
             background-color: #f9f9f9;
         }
+        
+        /* tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -49,8 +89,60 @@
         <li><a href="#" data-page="page2.html">Page 2</a></li>
         <li><a href="#" data-page="page3.html">Page 3</a></li>
     </ul>
-    <div id="container" class="idx-container"></div>
+    <div id="container" class="idx-container">
+        <h1 id="top">Top of Page</h1>
+        <p><a href="#bottom" class="anchor">Go to Bottom</a></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+        <p id="bottom">Bottom of Page</p>
+        <p><a href="#top" class="anchor">Go to Top</a></p>
+        
+        <!-- tooltip -->
+        <span class="tooltip">Hover over me!
+          <span class="tooltiptext">This is a tooltip!</span>
+        </span>
+        
+        <!-- popover -->
+        <button class="btn btn-secondary" data-toggle="popover" data-placement="top" title="Popover title" data-content="This is a popover!">Click me!</button>
+        
+        <!-- toast -->
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="mr-auto">Toast title</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body">
+            This is a toast!
+          </div>
+        </div>
+        
+        <!-- overlay -->
+        <button class="btn btn-secondary" data-toggle="modal" data-target="#overlayModal">Click me!</button>
+        
+                <div class="modal fade" id="overlayModal" tabindex="-1" role="dialog" aria-labelledby="overlayModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="overlayModalLabel">Overlay title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                This is an overlay!
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
         const menuLinks = document.querySelectorAll('#menu a');
 
@@ -95,6 +187,12 @@
                     container.innerHTML = doc.body.innerHTML;
                 });
         }
+
+        // Initialize Bootstrap tooltips and popovers
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
+        });
     </script>
 </body>
 </html>
