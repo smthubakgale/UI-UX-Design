@@ -1,198 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu-Based Page Loader</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        #container {
-            width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        #menu {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: space-around;
-            background-color: #f0f0f0;
-            border-bottom: 1px solid #ccc;
-        }
-        
-        #menu li {
-            margin-right: 20px;
-        }
-        
-        #menu a {
-            text-decoration: none;
-            color: #337ab7;
-        }
-        
-        #menu a:hover {
-            color: #23527c;
-        }
-        
-        /* idx namespace */
-        .idx-container {
-            background-color: #f9f9f9;
-        }
-        
-        /* tooltip styles */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .tooltip .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
-        
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu-Based Page Loader</title>
+  <style>
+    /* Add some basic styling to the menu */
+    #menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    #menu li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    
+    #menu a {
+      text-decoration: none;
+      color: #337ab7;
+    }
+    
+    #menu a:hover {
+      color: #23527c;
+    }
+  </style>
 </head>
 <body>
-    <ul id="menu">
-        <li><a href="#" data-page="page1.html">Page 1</a></li>
-        <li><a href="#" data-page="page2.html">Page 2</a></li>
-        <li><a href="#" data-page="page3.html">Page 3</a></li>
-    </ul>
-    <div id="container" class="idx-container">
-        <h1 id="top">Top of Page</h1>
-        <p><a href="#bottom" class="anchor">Go to Bottom</a></p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
-        <p id="bottom">Bottom of Page</p>
-        <p><a href="#top" class="anchor">Go to Top</a></p>
-        
-        <!-- tooltip -->
-        <span class="tooltip">Hover over me!
-          <span class="tooltiptext">This is a tooltip!</span>
-        </span>
-        
-        <!-- popover -->
-        <button class="btn btn-secondary" data-toggle="popover" data-placement="top" title="Popover title" data-content="This is a popover!">Click me!</button>
-        
-        <!-- toast -->
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="mr-auto">Toast title</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="toast-body">
-            This is a toast!
-          </div>
-        </div>
-        
-        <!-- overlay -->
-        <button class="btn btn-secondary" data-toggle="modal" data-target="#overlayModal">Click me!</button>
-        
-                <div class="modal fade" id="overlayModal" tabindex="-1" role="dialog" aria-labelledby="overlayModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="overlayModalLabel">Overlay title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                This is an overlay!
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
+  <!-- Menu -->
+  <ul id="menu">
+    <li><a href="subs/page1.html" data-page="subs/page1.html">Page 1</a></li>
+    <li><a href="subs/page2.html" data-page="subs/page2.html">Page 2</a></li>
+    <li><a href="page3.html" data-page="page3.html">Page 3</a></li>
+  </ul>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script>
-        const menuLinks = document.querySelectorAll('#menu a');
+  <!-- Page loader -->
+  <div id="container"></div>
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', event => {
-                event.preventDefault();
-                const pageUrl = link.getAttribute('data-page');
-                loadPage(pageUrl);
-            });
+  <!-- JavaScript code to load pages dynamically -->
+  <script>
+    const menuLinks = document.querySelectorAll('#menu a');
+    
+    menuLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const pageUrl = link.getAttribute('data-page');
+        loadPage(pageUrl);
+      });
+    });
+    
+    function loadPage(pageUrl) {
+      fetch(pageUrl)
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const styles = doc.querySelectorAll('link[rel="stylesheet"]');
+          const scripts = doc.querySelectorAll('script');
+          
+          // Remove existing styles and scripts
+          const existingStyles = document.querySelectorAll('link[rel="stylesheet"]');
+          existingStyles.forEach(style => style.remove());
+          const existingScripts = document.querySelectorAll('script');
+          existingScripts.forEach(script => script.remove());
+          
+          // Load page-specific CSS and JS
+          styles.forEach(style => {
+            const newStyle = document.createElement('link');
+            newStyle.rel = 'stylesheet';
+            newStyle.href = style.href;
+            document.head.appendChild(newStyle);
+          });
+          
+          scripts.forEach(script => {
+            const newScript = document.createElement('script');
+            newScript.src = script.src;
+            document.body.appendChild(newScript);
+          });
+          
+          // Add the HTML content to the container
+          const container = document.getElementById('container');
+          container.innerHTML = doc.body.innerHTML;
         });
-
-        function loadPage(pageUrl) {
-            fetch(pageUrl)
-                .then(response => response.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const styles = doc.querySelectorAll('style');
-                    const scripts = doc.querySelectorAll('script');
-
-                    // Remove existing styles and scripts
-                    const existingStyles = document.querySelectorAll('style');
-                    existingStyles.forEach(style => style.remove());
-                    const existingScripts = document.querySelectorAll('script');
-                    existingScripts.forEach(script => script.remove());
-
-                    // Load page-specific CSS and JS
-                    styles.forEach(style => {
-                        const newStyle = document.createElement('style');
-                        newStyle.textContent = style.textContent;
-                        document.head.appendChild(newStyle);
-                    });
-
-                    scripts.forEach(script => {
-                        const newScript = document.createElement('script');
-                        newScript.textContent = script.textContent;
-                        document.body.appendChild(newScript);
-                    });
-
-                    // Add the HTML content to the container
-                    const container = document.getElementById('container');
-                    container.innerHTML = doc.body.innerHTML;
-                });
-        }
-
-        // Initialize Bootstrap tooltips and popovers
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-            $('[data-toggle="popover"]').popover();
-        });
-    </script>
+    }
+  </script>
 </body>
 </html>
