@@ -1,8 +1,8 @@
-Menu-Based Page Loader
+## Menu-Based Page Loader
 =====================================
-Overview
+### Overview
 ------------
-This project demonstrates a menu-based page loader that loads different pages based on the menu item clicked.
+#### This project demonstrates a menu-based page loader that loads different pages based on the menu item clicked.
 Features
 ------------
 Menu-based page loader
