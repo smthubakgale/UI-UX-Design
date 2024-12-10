@@ -1,83 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 3</title>
-    <style>
-        /* p3 namespace */
-        .p3-container {
-            background-color: #fff;
-        }
-        
-        .p3-header {
-            color: #00008f;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page 3</title>
+  <link rel="stylesheet" href="assets/css/page3/styles.css" namespace="page3">
 </head>
 <body>
-    <div class="p3-container">
-        <h1 id="top" class="p3-header">Page 3</h1>
-        <p><a href="#bottom" class="anchor">Go to Bottom</a></p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
-        <p id="bottom">Bottom of Page</p>
-        <p><a href="#top" class="anchor">Go to Top</a></p>
-        
-        <!-- tooltip -->
-        <span class="tooltip">Hover over me!
-          <span class="tooltiptext">This is a tooltip!</span>
-        </span>
-        
-        <!-- popover -->
-        <button class="btn btn-secondary" data-toggle="popover" data-placement="top" title="Popover title" data-content="This is a popover!">Click me!</button>
-        
-        <!-- toast -->
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="mr-auto">Toast title</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="toast-body">
-            This is a toast!
-          </div>
-        </div>
-        
-        <!-- overlay -->
-        <button class="btn btn-secondary" data-toggle="modal" data-target="#overlayModal">Click me!</button>
-        
-        <div class="modal fade" id="overlayModal" tabindex="-1" role="dialog" aria-labelledby="overlayModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="overlayModalLabel">Overlay title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                This is an overlay!
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <script>
-        // p3 namespace
-        const p3 = {
-            myFunction: function() {
-                console.log('myFunction from page3.html');
-            }
-        };
-
-        // Call the function
-        p3.myFunction();
-    </script>
+  <!-- page content -->
+  <h1 class="page3">Welcome to Page 3!</h1>
+  <script src="assets/js/page3/script.js" namespace="page3"></script>
 </body>
 </html>
