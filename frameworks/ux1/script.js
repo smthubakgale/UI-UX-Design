@@ -61,4 +61,4 @@ menuLinks.forEach(link => {
 });
 
 // Load home page by default
-loadPage('home.html');
+loadPage('subs/page1.html');
