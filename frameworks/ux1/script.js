@@ -13,7 +13,7 @@ function addSectionId(css, sectionId) {
     if (selectorMatch) {
       var selector = selectorMatch[1].trim();
       var modifiedSelector = `
-`     + `#${sectionId} ${selector}`;
+`     + `#${sectionId} `;
 
       console.log(modifiedSelector);
       console.log(modifiedSelector + rule.substring(selector.length) + '}');
