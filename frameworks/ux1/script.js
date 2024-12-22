@@ -32,7 +32,7 @@ function loadPage(pageUrl) {
       fetch(link.href)
 .then(response => response.text())
 .then(css => {
-        const modifiedCss = css.replace(/(+)\s*{/g, `#${sectionId} $1 {`);
+        const modifiedCss = css.replace(/(+)(?=)/g, (match) => `#${sectionId} ${match}`);
         const newStyle = document.createElement('style');
         newStyle.textContent = modifiedCss;
         section.appendChild(newStyle);
