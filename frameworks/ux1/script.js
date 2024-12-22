@@ -4,6 +4,22 @@ function clearSections() {
   });
 }
 
+function addSectionId(css, sectionId) {
+  var rules = css.split('}');
+  var modifiedRules = ;
+
+  rules.forEach(function(rule) {
+    var selectorMatch = rule.match(/(+)/);
+    if (selectorMatch) {
+      var selector = selectorMatch.trim();
+      var modifiedSelector = `#${sectionId} ${selector}`;
+      modifiedRules.push(modifiedSelector + rule.substring(selector.length) + '}');
+    }
+  });
+
+  return modifiedRules.join('');
+}
+
 function loadPage(pageUrl) {
   clearSections();
 
@@ -32,7 +48,7 @@ function loadPage(pageUrl) {
       fetch(link.href)
 .then(response => response.text())
 .then(css => {
-        const modifiedCss = css.replace(/(+)(?=)/g, (match) => `#${sectionId} ${match}`);
+        const modifiedCss = addSectionId(css, sectionId);
         const newStyle = document.createElement('style');
         newStyle.textContent = modifiedCss;
         section.appendChild(newStyle);
