@@ -46,7 +46,11 @@ function loadPage(pageUrl) {
     // Add CSS
     links.forEach(link => {
       if (link.getAttribute('rel') === 'stylesheet' && link.getAttribute('href').endsWith('.css')) {
-        fetch(link.href.replace('../', ''))
+        const href = link.getAttribute('href').replace('../', '');
+        
+        console.log(href);
+        
+        fetch(href)
 .then(response => response.text())
 .then(css => {
           const modifiedCss = addSectionId(css, sectionId);
