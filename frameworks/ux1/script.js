@@ -12,7 +12,8 @@ function addSectionId(css, sectionId) {
     var selectorMatch = rule.match(/([^{]+)/);
     if (selectorMatch) {
       var selector = selectorMatch[1].trim();
-      var modifiedSelector = `#${sectionId} ${selector}`;
+      var modifiedSelector = `
+`     + `#${sectionId} ${selector}`;
       modifiedRules.push(modifiedSelector + rule.substring(selector.length) + '}');
     }
   });
@@ -53,7 +54,7 @@ function loadPage(pageUrl) {
         fetch(href)
 .then(response => response.text())
 .then(css => {
-          const modifiedCss = addSectionId(css, sectionId);
+          const modifiedCss = addSectionId(css.trim(), sectionId);
           const newStyle = document.createElement('style');
           newStyle.textContent = modifiedCss;
           section.appendChild(newStyle);
