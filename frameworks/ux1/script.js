@@ -6,12 +6,12 @@ function clearSections() {
 
 function addSectionId(css, sectionId) {
   var rules = css.split('}');
-  var modifiedRules = [];
+  var modifiedRules = ;
 
   rules.forEach(function(rule) {
-    var selectorMatch = rule.match(/([^{]+)/);
+    var selectorMatch = rule.match(/(+)/);
     if (selectorMatch) {
-      var selector = selectorMatch[1].trim();
+      var selector = selectorMatch.trim();
       var modifiedSelector = `#${sectionId} ${selector}`;
       modifiedRules.push(modifiedSelector + rule.substring(selector.length) + '}');
     }
@@ -45,16 +45,17 @@ function loadPage(pageUrl) {
 
     // Add CSS
     links.forEach(link => {
-      fetch(link.href)
+      if (link.getAttribute('rel') === 'stylesheet' && link.getAttribute('href').endsWith('.css')) {
+        fetch(link.href)
 .then(response => response.text())
 .then(css => {
-        const modifiedCss = addSectionId(css, sectionId);
-        console.log(css , modifiedCss);
-        const newStyle = document.createElement('style');
-        newStyle.textContent = modifiedCss;
-        section.appendChild(newStyle);
-      })
+          const modifiedCss = addSectionId(css, sectionId);
+          const newStyle = document.createElement('style');
+          newStyle.textContent = modifiedCss;
+          section.appendChild(newStyle);
+        })
 .catch(error => console.error(`Error loading CSS: ${error}`));
+      }
     });
 
     // Add HTML
