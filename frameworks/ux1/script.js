@@ -17,7 +17,7 @@ function addSectionId(css, sectionId) {
     }
   });
 
-  return modifiedRules.join('');
+  return modifiedRules.join('').replace('body' , '');
 }
 
 function loadPage(pageUrl) {
