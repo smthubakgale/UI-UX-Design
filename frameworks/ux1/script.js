@@ -73,8 +73,9 @@ function loadPage(pageUrl) {
 
     // Add JS
     scripts.forEach(script => {
+      const src = script.src.replace('../', ''); 
       const newScript = document.createElement('script');
-      newScript.src = script.src.replace('../', '');
+      newScript.src = src;
       section.appendChild(newScript);
     });
   })
