@@ -6,12 +6,12 @@ function clearSections() {
 
 function addSectionId(css, sectionId) {
   var rules = css.split('}');
-  var modifiedRules = ;
+  var modifiedRules = [] ;
 
   rules.forEach(function(rule) {
-    var selectorMatch = rule.match(/(+)/);
+    var selectorMatch = rule.match(/([^{]+)/);
     if (selectorMatch) {
-      var selector = selectorMatch.trim();
+      var selector = selectorMatch[1].trim();
       var modifiedSelector = `#${sectionId} ${selector}`;
       modifiedRules.push(modifiedSelector + rule.substring(selector.length) + '}');
     }
