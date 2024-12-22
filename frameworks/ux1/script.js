@@ -46,7 +46,7 @@ function loadPage(pageUrl) {
     // Add CSS
     links.forEach(link => {
       if (link.getAttribute('rel') === 'stylesheet' && link.getAttribute('href').endsWith('.css')) {
-        fetch(link.href)
+        fetch(link.href.replace('../', ''))
 .then(response => response.text())
 .then(css => {
           const modifiedCss = addSectionId(css, sectionId);
@@ -66,7 +66,7 @@ function loadPage(pageUrl) {
     // Add JS
     scripts.forEach(script => {
       const newScript = document.createElement('script');
-      newScript.src = script.src;
+      newScript.src = script.src.replace('../', '');
       section.appendChild(newScript);
     });
   })
