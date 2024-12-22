@@ -6,7 +6,7 @@ function clearSections() {
 
 function addSectionId(css, sectionId) {
   var rules = css.split('}');
-  var modifiedRules = ;
+  var modifiedRules = [];
 
   rules.forEach(function(rule) {
     var selectorMatch = rule.match(/(+)/);
