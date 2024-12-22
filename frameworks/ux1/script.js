@@ -14,6 +14,9 @@ function addSectionId(css, sectionId) {
       var selector = selectorMatch[1].trim();
       var modifiedSelector = `
 `     + `#${sectionId} ${selector}`;
+
+      console.log(modifiedSelector);
+      console.log(modifiedSelector + rule.substring(selector.length) + '}');
       modifiedRules.push(modifiedSelector + rule.substring(selector.length) + '}');
     }
   });
