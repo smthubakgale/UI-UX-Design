@@ -49,6 +49,7 @@ function loadPage(pageUrl) {
 .then(response => response.text())
 .then(css => {
         const modifiedCss = addSectionId(css, sectionId);
+        console.log(css , modifiedCss);
         const newStyle = document.createElement('style');
         newStyle.textContent = modifiedCss;
         section.appendChild(newStyle);
