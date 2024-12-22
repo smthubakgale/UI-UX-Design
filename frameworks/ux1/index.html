@@ -1,89 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu-Based Page Loader</title>
-  <style>
-    /* Add some basic styling to the menu */
-    #menu {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    
-    #menu li {
-      display: inline-block;
-      margin-right: 20px;
-    }
-    
-    #menu a {
-      text-decoration: none;
-      color: #337ab7;
-    }
-    
-    #menu a:hover {
-      color: #23527c;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Menu -->
-  <ul id="menu">
-    <li><a href="subs/page1.html" data-page="subs/page1.html">Page 1</a></li>
-    <li><a href="subs/page2.html" data-page="subs/page2.html">Page 2</a></li>
-    <li><a href="page3.html" data-page="page3.html">Page 3</a></li>
-  </ul>
-
-  <!-- Page loader -->
-  <div id="container"></div>
-
-  <!-- JavaScript code to load pages dynamically -->
-  <script>
-    const menuLinks = document.querySelectorAll('#menu a');
-    
-    menuLinks.forEach(link => {
-      link.addEventListener('click', event => {
-        event.preventDefault();
-        const pageUrl = link.getAttribute('data-page');
-        loadPage(pageUrl);
-      });
-    });
-    
-    function loadPage(pageUrl) {
-      fetch(pageUrl)
-        .then(response => response.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          const styles = doc.querySelectorAll('link[rel="stylesheet"]');
-          const scripts = doc.querySelectorAll('script');
-          
-          // Remove existing styles and scripts
-          const existingStyles = document.querySelectorAll('link[rel="stylesheet"]');
-          existingStyles.forEach(style => style.remove());
-          const existingScripts = document.querySelectorAll('script');
-          existingScripts.forEach(script => script.remove());
-          
-          // Load page-specific CSS and JS
-          styles.forEach(style => {
-            const newStyle = document.createElement('link');
-            newStyle.rel = 'stylesheet';
-            newStyle.href = style.href;
-            document.head.appendChild(newStyle);
-          });
-          
-          scripts.forEach(script => {
-            const newScript = document.createElement('script');
-            newScript.src = script.src;
-            document.body.appendChild(newScript);
-          });
-          
-          // Add the HTML content to the container
-          const container = document.getElementById('container');
-          container.innerHTML = doc.body.innerHTML;
-        });
-    }
-  </script>
+    <header>
+        <nav>
+            <ul id="menu">
+                <li><a href="#" data-page="home.html">Home</a></li>
+                <li><a href="#" data-page="about.html">About</a></li>
+                <li><a href="#" data-page="contact.html">Contact</a></li>
+                <li><a href="#" data-page="subs/page1.html">Page 1</a></li>
+                <li><a href="#" data-page="subs/page2.html">Page 2</a></li>
+                <li><a href="#" data-page="page3.html">Page 3</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home-page"></section>
+        <section id="about-page"></section>
+        <section id="contact-page"></section>
+        <section id="page1-page"></section>
+        <section id="page2-page"></section>
+        <section id="page3-page"></section>
+    </main>
+    <footer>
+        <p>&copy; 2023 UI/UX Design</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
