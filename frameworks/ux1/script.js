@@ -102,7 +102,7 @@ function loadPage(pageUrl) {
     scripts.forEach(script => {
       const src = script.getAttribute('src') .replace('../', ''); 
       const htm = script.innerHTML;
-      console.log(htm);
+      console.log(htm , src);
       if(htm){
         const jsCode = htm;
         const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
@@ -110,7 +110,7 @@ function loadPage(pageUrl) {
         modifiedScript.textContent = modifiedJsCode;
         section.appendChild(modifiedScript);
       }
-      if(src){
+      else if(src){
         
           fetch(src)
           .then(response => response.text())
