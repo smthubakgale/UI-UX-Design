@@ -63,19 +63,32 @@ function loadPage(pageUrl) {
     const section = document.getElementById(sectionId);
 
     // Add CSS
+    styles.forEach(style =>{
+       const htm = style.innerHTML;
+       if(htm){
+         const css = htm;
+         const modifiedCss = addSectionId(css.trim(), sectionId);
+         const newStyle = document.createElement('style');
+         newStyle.textContent = modifiedCss;
+         section.appendChild(newStyle);
+       }
+    });
     links.forEach(link => {
       if (link.getAttribute('rel') === 'stylesheet' && link.getAttribute('href').endsWith('.css')) {
         const href = link.getAttribute('href').replace('../', '');
-        
-        fetch(href)
-.then(response => response.text())
-.then(css => {
-          const modifiedCss = addSectionId(css.trim(), sectionId);
-          const newStyle = document.createElement('style');
-          newStyle.textContent = modifiedCss;
-          section.appendChild(newStyle);
-        })
-.catch(error => console.error(`Error loading CSS: ${error}`));
+        if(href){
+          fetch(href)
+          .then(response => response.text())
+          .then(css =>
+          {
+              const modifiedCss = addSectionId(css.trim(), sectionId);
+              const newStyle = document.createElement('style');
+              newStyle.textContent = modifiedCss;
+              section.appendChild(newStyle);
+          })
+          .catch(error => console.error(`Error loading CSS: ${error}`));
+          
+        }
       }
     });
 
@@ -87,20 +100,27 @@ function loadPage(pageUrl) {
     // Add JS
     scripts.forEach(script => {
       const src = script.getAttribute('src') .replace('../', ''); 
-      console.log(src);
-      //const newScript = document.createElement('script');
-      //newScript.src = src;
-      //section.appendChild(newScript);
-      // Modify JavaScript code
-      fetch(src)
-      .then(response => response.text())
-      .then(jsCode => {
-          const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
-          const modifiedScript = document.createElement('script');
-          modifiedScript.textContent = modifiedJsCode;
-          section.appendChild(modifiedScript);
-        })
-      .catch(error => console.error(`Error loading JS: ${error}`));
+      const htm = script.innerHTML;
+
+      if(htm){
+        const jsCode = htm;
+        const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
+        const modifiedScript = document.createElement('script');
+        modifiedScript.textContent = modifiedJsCode;
+        section.appendChild(modifiedScript);
+      }
+      if(src){
+        
+          fetch(src)
+          .then(response => response.text())
+          .then(jsCode => {
+              const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
+              const modifiedScript = document.createElement('script');
+              modifiedScript.textContent = modifiedJsCode;
+              section.appendChild(modifiedScript);
+            })
+          .catch(error => console.error(`Error loading JS: ${error}`));
+          }
       
     });
   })
