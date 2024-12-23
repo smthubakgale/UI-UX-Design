@@ -38,14 +38,12 @@ function loadPage(pageUrl) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     const links = doc.querySelectorAll('link');
+    const styles = doc.querySelectorAll('styles');
     const scripts = doc.querySelectorAll('script');
-    const pageContent = doc.body.innerHTML;
-
-    // Remove existing styles and scripts
-    const existingStyles = document.querySelectorAll('style');
-    existingStyles.forEach(style => style.remove());
-    const existingScripts = document.querySelectorAll('script');
-    existingScripts.forEach(script => script.remove());
+    const pageContent = doc.body.innerHTML
+        .replace(/<script>.*?<\/script>/g, '') // Remove script tags
+        .replace(/<style>.*?<\/style>/g, '') // Remove style tags
+        .replace(/<link.*?rel="stylesheet".*?>/g, ''); // Remove CSS links
 
     // Load page-specific CSS, HTML, and JS
     const pageName = pageUrl.replace('.html', '').replace('subs/', '');
