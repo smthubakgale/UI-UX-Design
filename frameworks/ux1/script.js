@@ -21,6 +21,13 @@ function addSectionId(css, sectionId) {
 
   return modifiedRules.join('').replace('body' , '');
 }
+function addSectionIdToJs(jsCode, sectionId) {
+  // Use regular expressions to find and modify query selectors
+  return   jsCode.replace(/(document\.querySelector|document\.querySelectorAll|jQuery|[$])\s*\(\s*["'](#|\.)([a-zA-Z0-9_-]+)["']\s*\)/g, (match, p1, p2, p3) => {
+    return `${p1}('#${sectionId} ${p2}${p3}')`;
+  });
+}
+
 
 function loadPage(pageUrl) {
   clearSections();
@@ -71,9 +78,21 @@ function loadPage(pageUrl) {
     scripts.forEach(script => {
       const src = script.getAttribute('src') .replace('../', ''); 
       console.log(src);
-      const newScript = document.createElement('script');
-      newScript.src = src;
-      section.appendChild(newScript);
+      //const newScript = document.createElement('script');
+      //newScript.src = src;
+      //section.appendChild(newScript);
+      // Modify JavaScript code
+      fetch(src)
+      .then(response => response.text())
+      .then(jsCode => {
+          const modifiedJsCode = addSectionIdToJs(jsCode, sectionId);
+        console.log(jsCode,modifiedJsCode);
+          const modifiedScript = document.createElement('script');
+          modifiedScript.textContent = modifiedJsCode;
+          section.appendChild(modifiedScript);
+        })
+      .catch(error => console.error(`Error loading JS: ${error}`));
+      });
     });
   })
 .catch((error) => console.error(error));
