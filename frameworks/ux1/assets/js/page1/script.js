@@ -1,4 +1,4 @@
-const page1 = {
+var page1 = {
   myFunction: () => {
     console.log("Welcome to Page 1!");
   },
