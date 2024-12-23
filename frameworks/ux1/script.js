@@ -38,6 +38,13 @@ function loadPage(pageUrl) {
     // Select all section elements
        const sections = document.querySelectorAll('section'); 
     // Loop through each section
+       window["dscript"] = window["dscript"] || [];
+
+       window["dscript"].forEach((s)=>
+       {
+          s.remove();
+       });
+  
        sections.forEach(section => 
        {
             // Select all style and script elements within the section
@@ -113,6 +120,7 @@ function loadPage(pageUrl) {
         const modifiedScript = document.createElement('script');
         modifiedScript.textContent = modifiedJsCode;
         section.appendChild(modifiedScript);
+        window["dscript"].push(modifiedScript);
       }
       else if(src)
       { 
@@ -125,6 +133,7 @@ function loadPage(pageUrl) {
               const modifiedScript = document.createElement('script');
               modifiedScript.textContent = modifiedJsCode;
               section.appendChild(modifiedScript);
+              window["dscript"].push(modifiedScript);
             })
           .catch(error => console.error(`Error loading JS: ${error}`));
           }
