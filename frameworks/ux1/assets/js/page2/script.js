@@ -4,7 +4,7 @@ const page2 = {
   },
   
   init: () => {
-    document.querySelector(".page2 h1").addEventListener("click", page2.myFunction);
+    document.querySelector("h1").addEventListener("click", page2.myFunction);
   }
 };
 
