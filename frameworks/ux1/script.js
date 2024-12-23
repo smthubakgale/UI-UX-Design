@@ -35,6 +35,18 @@ function loadPage(pageUrl) {
   fetch(pageUrl)
 .then((response) => response.text())
 .then((html) => {
+    // Select all section elements
+       const sections = document.querySelectorAll('section'); 
+    // Loop through each section
+       sections.forEach(section => 
+       {
+            // Select all style and script elements within the section
+               const stylesAndScripts = section.querySelectorAll('style, script');
+      
+            // Remove each style and script element
+               stylesAndScripts.forEach(element => element.remove());
+        });
+  
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     const links = doc.querySelectorAll('link');
