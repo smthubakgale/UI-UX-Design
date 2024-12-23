@@ -23,7 +23,7 @@ function addSectionId(css, sectionId) {
 }
 function addSectionIdToJs(jsCode, sectionId) {
   // Use regular expressions to find and modify query selectors
-  return   jsCode.replace(/(document\.querySelector|document\.querySelectorAll|jQuery|[$])\s*\(\s*["'](#|\.)([a-zA-Z0-9_-]+)["']\s*\)/g, (match, p1, p2, p3) => {
+  return   jsCode.replace(/(document\.querySelector|document\.querySelectorAll|jQuery|[$])\s*\(\s*["'](#|\.|)([a-zA-Z0-9_-]+)["']\s*\)/g, (match, p1, p2, p3) => {
     return `${p1}('#${sectionId} ${p2}${p3}')`;
   });
 }
