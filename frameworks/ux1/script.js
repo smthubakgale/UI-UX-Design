@@ -50,8 +50,6 @@ function loadPage(pageUrl) {
       if (link.getAttribute('rel') === 'stylesheet' && link.getAttribute('href').endsWith('.css')) {
         const href = link.getAttribute('href').replace('../', '');
         
-        console.log(href);
-        
         fetch(href)
 .then(response => response.text())
 .then(css => {
