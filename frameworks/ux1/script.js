@@ -15,8 +15,6 @@ function addSectionId(css, sectionId) {
       var modifiedSelector = `
 `     + `#${sectionId} `;
 
-      console.log(modifiedSelector);
-      console.log(modifiedSelector + rule.substring(selector.length) + '}');
       modifiedRules.push(modifiedSelector + rule.substring(selector.length) + '}');
     }
   });
@@ -74,6 +72,7 @@ function loadPage(pageUrl) {
     // Add JS
     scripts.forEach(script => {
       const src = script.src.replace('../', ''); 
+      console.log(src);
       const newScript = document.createElement('script');
       newScript.src = src;
       section.appendChild(newScript);
