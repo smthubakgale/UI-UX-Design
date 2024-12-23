@@ -50,7 +50,7 @@ function loadPage(pageUrl) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     const links = doc.querySelectorAll('link');
-    const styles = doc.querySelectorAll('styles');
+    const styles = doc.querySelectorAll('style');
     const scripts = doc.querySelectorAll('script');
     const pageContent = doc.body.innerHTML
         .replace(/<script>.*?<\/script>/g, '') // Remove script tags
@@ -65,6 +65,7 @@ function loadPage(pageUrl) {
     // Add CSS
     styles.forEach(style =>{
        const htm = style.innerHTML;
+       console.log(htm);
        if(htm){
          const css = htm;
          const modifiedCss = addSectionId(css.trim(), sectionId);
@@ -101,7 +102,7 @@ function loadPage(pageUrl) {
     scripts.forEach(script => {
       const src = script.getAttribute('src') .replace('../', ''); 
       const htm = script.innerHTML;
-
+      console.log(htm);
       if(htm){
         const jsCode = htm;
         const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
