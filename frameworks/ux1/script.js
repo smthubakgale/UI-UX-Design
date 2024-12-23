@@ -96,7 +96,11 @@ function loadPage(pageUrl) {
     // Add HTML
     const contentDiv = document.createElement('div');
     contentDiv.innerHTML = pageContent;
-    section.appendChild(contentDiv);
+  
+    const stylesAndScripts2 = contentDiv.querySelectorAll('style, script'); 
+    stylesAndScripts2.forEach(element => element.remove());
+    
+     section.appendChild(contentDiv);
 
     // Add JS
     scripts.forEach(script => {
