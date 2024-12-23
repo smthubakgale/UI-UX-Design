@@ -69,7 +69,7 @@ function loadPage(pageUrl) {
 
     // Add JS
     scripts.forEach(script => {
-      const src = script.src.replace('../', ''); 
+      const src = script.getAttribute('src') .replace('../', ''); 
       console.log(src);
       const newScript = document.createElement('script');
       newScript.src = src;
