@@ -138,4 +138,4 @@ menuLinks.forEach(link => {
 });
 
 // Load home page by default
-loadPage('subs/page1.html');
+loadPage('page3.html');
