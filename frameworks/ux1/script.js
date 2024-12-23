@@ -92,7 +92,7 @@ function loadPage(pageUrl) {
           section.appendChild(modifiedScript);
         })
       .catch(error => console.error(`Error loading JS: ${error}`));
-      });
+      
     });
   })
 .catch((error) => console.error(error));
