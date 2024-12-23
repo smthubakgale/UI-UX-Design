@@ -71,8 +71,7 @@ function loadPage(pageUrl) {
 
     // Add CSS
     styles.forEach(style =>{
-       const htm = style.innerHTML;
-       console.log(htm);
+       const htm = style.innerHTML; 
        if(htm){
          const css = htm;
          const modifiedCss = addSectionId(css.trim(), sectionId);
@@ -113,7 +112,7 @@ function loadPage(pageUrl) {
     scripts.forEach(script => {
       let src = script.getAttribute('src');
       const htm = script.innerHTML;
-      console.log(htm , src);
+      
       if(htm){
         const jsCode = htm;
         const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
