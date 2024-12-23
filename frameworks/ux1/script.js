@@ -95,9 +95,7 @@ function loadPage(pageUrl) {
       fetch(src)
       .then(response => response.text())
       .then(jsCode => {
-          const modifiedJsCode = addSectionIdToJs(jsCode, sectionId);
-        console.log(jsCode);
-        console.log(modifiedJsCode);
+          const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
           const modifiedScript = document.createElement('script');
           modifiedScript.textContent = modifiedJsCode;
           section.appendChild(modifiedScript);
