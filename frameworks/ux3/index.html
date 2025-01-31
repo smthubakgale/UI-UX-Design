@@ -1,8 +1,9 @@
 <html>
   <head></head>
   <body>
+    
     <style>
-    /* Style the dropdown menu container */
+      /* Style the dropdown menu container */
 .dropdown-menu {
   position: relative;
   display: inline-block;
@@ -20,7 +21,7 @@
 /* Style the dropdown menu list */
 .dropdown-list {
   position: absolute;
-  top: 0px; /* Adjust the top position to move the dropdown below the toggle button */
+  top: 40px; /* Adjust the top position to move the dropdown below the toggle button */
   left: 0;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
@@ -66,6 +67,90 @@
   display: block;
 }
 
+/* Media queries for different screen sizes */
+
+/* Mobile devices (max-width: 767px) */
+@media only screen and (max-width: 767px) {
+  .dropdown-menu {
+    display: block;
+  }
+  .dropdown-toggle {
+    display: block;
+    width: 100%;
+  }
+  .dropdown-list {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    padding: 0;
+  }
+  .dropdown-list li {
+    margin-bottom: 0;
+  }
+  .dropdown-list a {
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+/* Tablet devices (min-width: 768px) and (max-width: 1023px) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .dropdown-menu {
+    display: inline-block;
+  }
+  .dropdown-toggle {
+    display: inline-block;
+    width: auto;
+  }
+  .dropdown-list {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 200px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  .dropdown-list li {
+    margin-bottom: 10px;
+  }
+  .dropdown-list a {
+    padding: 10px 15px;
+    border-bottom: none;
+  }
+}
+
+/* Web devices (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+  .dropdown-menu {
+    display: inline-block;
+  }
+  .dropdown-toggle {
+    display: inline-block;
+    width: auto;
+  }
+  .dropdown-list {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 200px;
+    background-color: #f9f9f9;
+      border: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.dropdown-list li {
+  margin-bottom: 10px;
+}
+
+.dropdown-list a {
+  padding: 10px 15px;
+  border-bottom: none;
+}
+
 /* Show the dropdown menu list on hover */
 .dropdown-menu:hover .dropdown-list {
   display: block;
@@ -77,7 +162,8 @@
 }
     </style>
 
-  <!-- Dropdown menu container -->
+    <main>
+      <!-- Dropdown menu container -->
 <div class="dropdown-menu">
   <!-- Dropdown menu toggle button -->
   <button class="dropdown-toggle">Menu</button>
@@ -98,6 +184,21 @@
     <li><a href="#">Contact</a></li>
   </ul>
 </div>
+    </main>
+
+    <script>
+      // Get the dropdown menu toggle button
+const dropdownToggle = document.querySelector('.dropdown-toggle');
+
+// Get the dropdown menu list
+const dropdownList = document.querySelector('.dropdown-list');
+
+// Add an event listener to the toggle button
+dropdownToggle.addEventListener('click', () => {
+  // Toggle the display of the dropdown menu list
+  dropdownList.style.display = dropdownList.style.display === 'block' ? 'none' : 'block';
+});
+    </script>
     
   </body>
 </html>
