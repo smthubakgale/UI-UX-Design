@@ -2,7 +2,7 @@
   <head></head>
   <body>
     <style>
-      /* Style the dropdown menu container */
+    /* Style the dropdown menu container */
 .dropdown-menu {
   position: relative;
   display: inline-block;
@@ -20,12 +20,13 @@
 /* Style the dropdown menu list */
 .dropdown-list {
   position: absolute;
-  top: 100%;
+  top: 40px; /* Adjust the top position to move the dropdown below the toggle button */
   left: 0;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   padding: 10px 0;
   display: none;
+  width: 200px; /* Adjust the width to match the toggle button width */
 }
 
 /* Style the dropdown menu list items */
@@ -75,8 +76,9 @@
   display: block;
 }
     </style>
-    <!-- Dropdown menu container -->
-   <div class="dropdown-menu">
+
+  <!-- Dropdown menu container -->
+<div class="dropdown-menu">
   <!-- Dropdown menu toggle button -->
   <button class="dropdown-toggle">Menu</button>
   <!-- Unordered list for dropdown menu items -->
@@ -96,7 +98,6 @@
     <li><a href="#">Contact</a></li>
   </ul>
 </div>
-
     
   </body>
 </html>
