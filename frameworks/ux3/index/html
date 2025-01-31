@@ -1,0 +1,102 @@
+<html>
+  <head></head>
+  <body>
+    <style>
+      /* Style the dropdown menu container */
+.dropdown-menu {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style the dropdown menu toggle button */
+.dropdown-toggle {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style the dropdown menu list */
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px 0;
+  display: none;
+}
+
+/* Style the dropdown menu list items */
+.dropdown-list li {
+  margin-bottom: 10px;
+}
+
+/* Style the dropdown menu links */
+.dropdown-list a {
+  color: #337ab7;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+}
+
+/* Style the dropdown menu sublist */
+.dropdown-sublist {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px 0;
+  display: none;
+}
+
+/* Style the dropdown menu sublist items */
+.dropdown-sublist li {
+  margin-bottom: 10px;
+}
+
+/* Style the dropdown menu sublist links */
+.dropdown-sublist a {
+  color: #337ab7;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+}
+
+/* Show the dropdown menu list on hover */
+.dropdown-menu:hover .dropdown-list {
+  display: block;
+}
+
+/* Show the dropdown menu sublist on hover */
+.dropdown-submenu:hover .dropdown-sublist {
+  display: block;
+}
+    </style>
+    <!-- Dropdown menu container -->
+   <div class="dropdown-menu">
+  <!-- Dropdown menu toggle button -->
+  <button class="dropdown-toggle">Menu</button>
+  <!-- Unordered list for dropdown menu items -->
+  <ul class="dropdown-list">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li class="dropdown-submenu">
+      <a href="#">Products</a>
+      <!-- Nested unordered list for submenu items -->
+      <ul class="dropdown-sublist">
+        <li><a href="#">Product 1</a></li>
+        <li><a href="#">Product 2</a></li>
+        <li><a href="#">Product 3</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</div>
+
+    
+  </body>
+</html>
